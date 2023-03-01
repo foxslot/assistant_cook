@@ -25,9 +25,11 @@ public class Application {
         int menuItemID = mainMenu.getID_MenuItem();
 
         if (menuItemID == 1) {
+            System.out.print("\033[H\033[2J");
             FindRecipe findRecipe = new FindRecipe();
             findRecipe.openMenuFindRecipe();
         } else if (menuItemID == 0) {
+            System.out.print("\033[H\033[2J");
             System.out.println("Завершение...");
         } else {
             System.out.println("Не реализовано");
