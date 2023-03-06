@@ -197,9 +197,30 @@ public class connectToDataBaseRecipes {
                 SQLException e) {
             throw new RuntimeException(e);
         }
+    }
 
+    public static void addRecipeToTheDB(){
 
+        String query = "INSERT INTO public.recipes (\n" +
+                "\"NameDish\", \"TypeDish\", \"ForNumbersOfPerson\", \"ApproximateCookingTime\") VALUES (\n" +
+                "'Грибной суп'::character varying, 'супы'::character varying, '4'::character varying, '60'::integer)\n" +
+                " returning \"ID_Dish\";";
 
+        try (
+                Connection connection
+                        = DriverManager.getConnection(URL, USER, PASSWORD_DB);
+                PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                //findDishes.put(resultSet.getInt("ID_Dish"), resultSet.getString("NameDish"));
+            }
+
+        } catch (
+                SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 

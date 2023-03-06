@@ -140,7 +140,7 @@ public class FindRecipe {
 
     }
 
-    private void runSearchRecipeByIngridients() {
+    public void runSearchRecipeByIngridients() {
 
         System.out.println("Поиск рецепта по ингридиентам...");
         System.out.println("Введите ингредиенты через \",\" или нажмите 0 для выхода");

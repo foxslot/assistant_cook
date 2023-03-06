@@ -1,6 +1,7 @@
 package assistant_cook;
 
 import assistant_cook.Menu.MainMenu;
+import assistant_cook.MenuItems.AddRecipe;
 import assistant_cook.MenuItems.FindRecipe;
 import assistant_cook.TelegramBots.TelegramBotJavaHW;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
@@ -28,6 +29,14 @@ public class Application {
             System.out.print("\033[H\033[2J");
             FindRecipe findRecipe = new FindRecipe();
             findRecipe.openMenuFindRecipe();
+        } else if (menuItemID == 2) {
+            System.out.print("\033[H\033[2J");
+            FindRecipe findRecipe = new FindRecipe();
+            findRecipe.runSearchRecipeByIngridients();
+        } else if (menuItemID == 3) {
+            System.out.print("\033[H\033[2J");
+            AddRecipe addRecipe = new AddRecipe();
+            addRecipe.startAddingRecipe();
         } else if (menuItemID == 0) {
             System.out.print("\033[H\033[2J");
             System.out.println("Завершение...");
@@ -36,9 +45,6 @@ public class Application {
         }
 
         //System.out.println(menuItemID);
-
-
-
 
 
     }
