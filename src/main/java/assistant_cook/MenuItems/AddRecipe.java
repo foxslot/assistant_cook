@@ -1,5 +1,7 @@
 package assistant_cook.MenuItems;
 
+import assistant_cook.ConnectToBase.connectToDataBaseRecipes;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -39,11 +41,22 @@ public class AddRecipe {
             return;
         }
 
+        HashMap<String, String> recipeKey = new HashMap<>();
+        recipeKey.put("name_recipe", nameRecipe);
+        recipeKey.put("type_recipe", typeRecipe);
+        recipeKey.put("numbers_of_person", forNumbersOfPerson);
+        recipeKey.put("approximate_cooking_time", Integer.toString(approximateCookingTime));
+
+        // ввод ингридиентов
         int count = 1;
 
         String[] columnNames = {"name_ingridient", "unit_type", "amount", "index_number"};
         tableForRecipes tableOfIngridients = new tableForRecipes(columnNames);
         ArrayList<HashMap<String, String>> stringsIngridients = tableOfIngridients.strings;
+
+        System.out.println("_____________________________________________________________________________________________________");
+        System.out.println("ВВОД ИНГРИДИЕНТОВ");
+        System.out.println("_____________________________________________________________________________________________________");
 
         while (true) {
 
@@ -94,6 +107,10 @@ public class AddRecipe {
         tableForRecipes tableOfStepsRecipe = new tableForRecipes(columnNamesSteps);
         ArrayList<HashMap<String, String>> stringsStepsRecipe = tableOfStepsRecipe.strings;
 
+        System.out.println("_____________________________________________________________________________________________________");
+        System.out.println("ВВОД ШАГОВ ИНСТРУКЦИЙ ПО ГОТОВКЕ");
+        System.out.println("_____________________________________________________________________________________________________");
+
         while (true){
 
             System.out.println("Введите инструкцию шага " + step_number + ". Для завершения ввода шагов с инструкциями введите 1, для отмены 0");
@@ -117,8 +134,11 @@ public class AddRecipe {
 
         }
 
+        connectToDataBaseRecipes.addRecipeToTheDB(recipeKey, stringsIngridients, stringsStepsRecipe);
 
-
+        System.out.println("_____________________________________________________________________________________________________");
+        System.out.println("Рецепт добавлен");
+        System.out.println("_____________________________________________________________________________________________________");
 
     }
 

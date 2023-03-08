@@ -143,7 +143,7 @@ public class FindRecipe {
     public void runSearchRecipeByIngridients() {
 
         System.out.println("Поиск рецепта по ингридиентам...");
-        System.out.println("Введите ингредиенты через \",\" или нажмите 0 для выхода");
+        System.out.println("Введите ингредиенты с заглавной буквы через \",\" или нажмите 0 для выхода");
 
         Scanner in = new Scanner(System.in);
 
