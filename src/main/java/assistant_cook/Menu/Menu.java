@@ -8,6 +8,7 @@ public class Menu implements Menuable{
     protected Map<String, Integer> commands_id = new HashMap<>();
     public void displayMenu() {
         for (String menuItem : menuItems) {
+            System.out.println("");
             System.out.println(menuItem);
         }
     }
@@ -26,6 +27,7 @@ public class Menu implements Menuable{
                 result = commands_id.get(strID);
                 break;
             } else {
+                System.out.println("___________________________");
                 System.out.println("Введена некорректная команда");
             }
         }

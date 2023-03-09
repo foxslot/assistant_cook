@@ -1,0 +1,11 @@
+assistant_cook\Menu\Menuable.class
+assistant_cook\Menu\ChoiseDishMenu.class
+assistant_cook\Menu\Menu.class
+assistant_cook\Menu\MainMenu.class
+assistant_cook\MenuItems\AddRecipe.class
+assistant_cook\ConnectToBase\connectToDataBaseRecipes.class
+assistant_cook\Menu\FindRecepsMenu.class
+assistant_cook\MenuItems\FindRecipe.class
+assistant_cook\MenuItems\DeleteRecipe.class
+assistant_cook\MenuItems\tableForRecipes.class
+assistant_cook\Application.class
