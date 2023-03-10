@@ -10,7 +10,7 @@ public class MainMenu extends Menu{
 
          this.menuItems.add("Выберите действие:");
         addMenuItems("- 1. Получить рецепт", "1", 1);
-        addMenuItems("- 2. Подобрать рецепт по ингридиентам", "2", 2);
+        addMenuItems("- 2. Подобрать рецепт по ингредиентам", "2", 2);
         addMenuItems("- 3. Добавить рецепт", "3", 3);
         addMenuItems("- 4. Удалить рецепт", "4", 4);
         addMenuItems("- 0. Выход", "0", 0);

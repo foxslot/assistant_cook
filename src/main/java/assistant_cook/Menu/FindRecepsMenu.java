@@ -9,7 +9,7 @@ public class FindRecepsMenu extends Menu{
 
         this.menuItems.add("Выберите действие:");
         addMenuItems("- 1. Найти рецепт по наименованию", "1", 1);
-        addMenuItems("- 2. Подобрать рецепт по ингридиентам", "2", 2);
+        addMenuItems("- 2. Подобрать рецепт по ингредиентам", "2", 2);
         addMenuItems("- 0. Выход", "0", 0);
 
     }
