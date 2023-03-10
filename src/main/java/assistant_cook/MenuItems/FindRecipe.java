@@ -48,7 +48,7 @@ public class FindRecipe {
 
             if (strID.equals("1")) {
                 int resChoise = showAllDishes();
-                if (resChoise==0) {
+                if (resChoise == 0) {
                     break;
                 }
             } else if (strID.equals("0")) {
@@ -56,7 +56,7 @@ public class FindRecipe {
             } else {
                 System.out.println("Поиск блюда по наименованию...");
                 int resChoise = searchDishByName(strID);
-                if (resChoise==0) {
+                if (resChoise == 0) {
                     break;
                 }
             }
@@ -85,7 +85,7 @@ public class FindRecipe {
 
         int id_dish = choiseDishMenu.getID_MenuItem();
 
-        if (id_dish==0){
+        if (id_dish == 0) {
             return 0;
         }
 
@@ -120,7 +120,7 @@ public class FindRecipe {
         int result = 1;
         HashMap<Integer, String> findedRecipes = connectToDataBaseRecipes.getRecipesByName(NameDish);
 
-        if(findedRecipes.isEmpty()) {
+        if (findedRecipes.isEmpty()) {
             System.out.println("_______________________________");
             System.out.println("Рецепты не найдены");
             return result;
@@ -139,7 +139,7 @@ public class FindRecipe {
 
         int id_dish = choiseDishMenu.getID_MenuItem();
 
-        if (id_dish==0){
+        if (id_dish == 0) {
             return 0;
         }
 
@@ -228,7 +228,11 @@ public class FindRecipe {
 
                 }
 
-                textMenuItem = "- " + String.valueOf(count) + ". " + menuItem.getValue() + " (нужно докупить: " + strNeedToBuy + ")";
+                if (strNeedToBuy.equals("")) {
+                    textMenuItem = "- " + String.valueOf(count) + ". " + menuItem.getValue();
+                } else {
+                    textMenuItem = "- " + String.valueOf(count) + ". " + menuItem.getValue() + " (нужно докупить: " + strNeedToBuy + ")";
+                }
                 menuAvailableDishes.addMenuItems(textMenuItem, String.valueOf(count), menuItem.getKey());
                 count++;
             }
@@ -236,7 +240,7 @@ public class FindRecipe {
 
             int id_dish = menuAvailableDishes.getID_MenuItem();
 
-            if(id_dish==0){
+            if (id_dish == 0) {
                 break;
             }
 
@@ -255,7 +259,7 @@ public class FindRecipe {
             }
 
             System.out.println("________________________________________________");
-            System.out.println("Шаги рецептов:");
+            System.out.println("Пошаговая инструкция приготовления:");
 
             for (String nameRecipeStep : findedRecipeSteps) {
                 System.out.println(nameRecipeStep);
