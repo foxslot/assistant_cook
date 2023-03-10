@@ -10,34 +10,39 @@ public class AddRecipe {
 
     public void startAddingRecipe() {
 
-        System.out.println("Введите название рецепта или 0 для отмены");
+        System.out.println("_____________________________________________________________________________");
+        System.out.println("Введите название рецепта с заглавной буквы или 0 для выхода в главное меню");
+        System.out.println("_____________________________________________________________________________");
         Scanner in = new Scanner(System.in);
         String nameRecipe = in.nextLine();
 
         if (nameRecipe.equals("0")) {
-            System.out.println("Завершение...");
             return;
         }
 
-        System.out.println("Введите тип блюда или 0 для отмены");
+        System.out.println("_____________________________________________________________________________");
+        System.out.println("Введите тип блюда с заглавной буквы или 0 для отмены");
+        System.out.println("_____________________________________________________________________________");
         String typeRecipe = in.nextLine();
 
         if (typeRecipe.equals("0")) {
-            System.out.println("Завершение...");
+            System.out.println("_____________________________________________________________________________");
             return;
         }
 
-        System.out.println("Введите количество персон или 0 для отмены");
+        System.out.println("_____________________________________________________________________________");
+        System.out.println("Введите количество персон или 0 для выхода в главное меню");
+        System.out.println("_____________________________________________________________________________");
         String forNumbersOfPerson = in.nextLine();
         if (forNumbersOfPerson.equals("0")) {
-            System.out.println("Завершение...");
             return;
         }
 
-        System.out.println("Введите примерное время готовки в минутах или 0 для отмены");
+        System.out.println("_____________________________________________________________________________");
+        System.out.println("Введите примерное время готовки в минутах или 0 для выхода в главное меню");
+        System.out.println("_____________________________________________________________________________");
         int approximateCookingTime = in.nextInt();
         if (approximateCookingTime == 0) {
-            System.out.println("Завершение...");
             return;
         }
 
@@ -60,7 +65,10 @@ public class AddRecipe {
 
         while (true) {
 
-            System.out.println("Введите наименование Ингридиента " + count + ". Для завершения ввода ингридиентов введите 1, для отмены 0");
+            System.out.println("_____________________________________________________________________________");
+            System.out.println("Введите наименование Ингридиента " + count + " с заглавной буквы. \n" +
+                    "Для завершения ввода ингридиентов введите 1, для выхода в главное меню 0");
+            System.out.println("_____________________________________________________________________________");
 
             in = new Scanner(System.in);
             String nameIngridient = in.nextLine();
@@ -71,19 +79,24 @@ public class AddRecipe {
                 break;
             }
 
+            System.out.println("_____________________________________________________________________________");
             System.out.println("Введите единицу измерения Ингридиента" + count);
+            System.out.println("_____________________________________________________________________________");
             String unit_type = in.nextLine();
 
+            System.out.println("_____________________________________________________________________________");
             System.out.println("Введите количество Ингридиента " + count + " в " + unit_type);
+            System.out.println("_____________________________________________________________________________");
             int amount = 1;
-            while (true){
+            while (true) {
                 try {
                     in = new Scanner(System.in);
                     amount = in.nextInt();
                     break;
-                }
-               catch (Exception e){
+                } catch (Exception e) {
+                    System.out.println("_____________________________________________________________________________");
                     System.out.println("Введено некорректное значение");
+                    System.out.println("_____________________________________________________________________________");
                 }
             }
 
@@ -111,9 +124,11 @@ public class AddRecipe {
         System.out.println("ВВОД ШАГОВ ИНСТРУКЦИЙ ПО ГОТОВКЕ");
         System.out.println("_____________________________________________________________________________________________________");
 
-        while (true){
-
-            System.out.println("Введите инструкцию шага " + step_number + ". Для завершения ввода шагов с инструкциями введите 1, для отмены 0");
+        while (true) {
+            System.out.println("_____________________________________________________________________________");
+            System.out.println("Введите инструкцию шага " + step_number + ". Для завершения ввода шагов с инструкциями введите 1, \n" +
+                    "для выхода в главное меню 0");
+            System.out.println("_____________________________________________________________________________");
 
             in = new Scanner(System.in);
             instruction = in.nextLine();
@@ -136,9 +151,9 @@ public class AddRecipe {
 
         connectToDataBaseRecipes.addRecipeToTheDB(recipeKey, stringsIngridients, stringsStepsRecipe);
 
-        System.out.println("_____________________________________________________________________________________________________");
+        System.out.println("_____________________________________________________________________________");
         System.out.println("Рецепт добавлен");
-        System.out.println("_____________________________________________________________________________________________________");
+        System.out.println("_____________________________________________________________________________");
 
     }
 

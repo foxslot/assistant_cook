@@ -11,6 +11,7 @@ public class Menu implements Menuable{
             System.out.println("");
             System.out.println(menuItem);
         }
+        System.out.println("________________________________________________________________________________");
     }
     public void addMenuItems(String nameMenuItem, String numberMenuItem, int ID_MenuItem) {
         this.menuItems.add(nameMenuItem);
@@ -23,7 +24,9 @@ public class Menu implements Menuable{
         while (true) {
             String strID = in.nextLine();
 
-            if (commands_id.containsKey(strID)) {
+            if(strID.equals("0")){
+                break;
+            } else if (commands_id.containsKey(strID)) {
                 result = commands_id.get(strID);
                 break;
             } else {

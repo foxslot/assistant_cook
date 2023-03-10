@@ -26,7 +26,6 @@ public class FindRecipe {
                 break;
 
             } else if (ID_findRecipe == 0) {
-                System.out.println("Завершение...");
                 return;
             } else {
                 System.out.println("Введена некорректная программа");
@@ -36,29 +35,40 @@ public class FindRecipe {
     }
 
     private void runSearchRecipe() {
-        System.out.println("Введите название блюда или введите 1 чтобы вывести все названия всех блюд. Для выхода введите 0");
 
         Scanner in = new Scanner(System.in);
 
         while (true) {
 
+            System.out.println("Введите название блюда или введите 1 чтобы вывести все названия всех блюд. \n" +
+                    "Для выхода в главное меню введите 0");
+            System.out.println("_____________________________________________________________________________");
+
             String strID = in.nextLine();
 
             if (strID.equals("1")) {
-                showAllDishes();
+                int resChoise = showAllDishes();
+                if (resChoise==0) {
+                    break;
+                }
             } else if (strID.equals("0")) {
                 break;
             } else {
                 System.out.println("Поиск блюда по наименованию...");
-                searchDishByName(strID);
+                int resChoise = searchDishByName(strID);
+                if (resChoise==0) {
+                    break;
+                }
             }
-            System.out.println("");
-            System.out.println("Введите 0 для выхода");
+
+            System.out.println("\n\n_____________________________________________________________________________");
         }
         return;
     }
 
-    private void showAllDishes() {
+    private int showAllDishes() {
+
+        int result = 1;
 
         HashMap<Integer, String> findDishes = connectToDataBaseRecipes.getAllDishes();
 
@@ -74,6 +84,10 @@ public class FindRecipe {
         choiseDishMenu.displayMenu();
 
         int id_dish = choiseDishMenu.getID_MenuItem();
+
+        if (id_dish==0){
+            return 0;
+        }
 
         ArrayList<String> findedIngridients = connectToDataBaseRecipes.getIngridientsByID(id_dish);
 
@@ -91,17 +105,26 @@ public class FindRecipe {
         }
 
         System.out.println("________________________________________________");
-        System.out.println("Шаги рецептов:");
+        System.out.println("Пошаговая инструкция приготовления:");
 
         for (String nameRecipeStep : findedRecipeSteps) {
             System.out.println(nameRecipeStep);
         }
 
+        return result;
+
     }
 
-    private void searchDishByName(String NameDish) {
+    private int searchDishByName(String NameDish) {
 
+        int result = 1;
         HashMap<Integer, String> findedRecipes = connectToDataBaseRecipes.getRecipesByName(NameDish);
+
+        if(findedRecipes.isEmpty()) {
+            System.out.println("_______________________________");
+            System.out.println("Рецепты не найдены");
+            return result;
+        }
 
         ChoiseDishMenu choiseDishMenu = new ChoiseDishMenu();
 
@@ -115,6 +138,10 @@ public class FindRecipe {
         choiseDishMenu.displayMenu();
 
         int id_dish = choiseDishMenu.getID_MenuItem();
+
+        if (id_dish==0){
+            return 0;
+        }
 
         ArrayList<String> findedIngridients = connectToDataBaseRecipes.getIngridientsByID(id_dish);
 
@@ -132,18 +159,22 @@ public class FindRecipe {
         }
 
         System.out.println("________________________________________________");
-        System.out.println("Шаги рецептов:");
+        System.out.println("Пошаговая инструкция приготовления:");
 
         for (String nameRecipeStep : findedRecipeSteps) {
             System.out.println(nameRecipeStep);
         }
 
+        return result;
+
     }
 
     public void runSearchRecipeByIngridients() {
 
+        System.out.println("________________________________________________________________________________");
         System.out.println("Поиск рецепта по ингридиентам...");
         System.out.println("Введите ингредиенты с заглавной буквы через \",\" или нажмите 0 для выхода");
+        System.out.println("________________________________________________________________________________");
 
         Scanner in = new Scanner(System.in);
 
@@ -158,6 +189,13 @@ public class FindRecipe {
             String[] listOfAvailableIngridients = strListOfAvailableIngridients.split(",");
 
             HashMap<Integer, String> listFinedDishes = connectToDataBaseRecipes.getRecipesIdByIngridientsName(listOfAvailableIngridients);
+
+            if (listFinedDishes.isEmpty()) {
+                System.out.println("________________________________________________________________________________");
+                System.out.println("Рецепты не найдены");
+                System.out.println("________________________________________________________________________________");
+                return;
+            }
 
             ChoiseDishMenu menuAvailableDishes = new ChoiseDishMenu();
             int count = 1;
@@ -197,6 +235,11 @@ public class FindRecipe {
             menuAvailableDishes.displayMenu();
 
             int id_dish = menuAvailableDishes.getID_MenuItem();
+
+            if(id_dish==0){
+                break;
+            }
+
             String nameDish = listFinedDishes.get(id_dish);
 
             ArrayList<String> findedIngridients = connectToDataBaseRecipes.getIngridientsByID(id_dish);
@@ -220,7 +263,7 @@ public class FindRecipe {
 
             System.out.println("");
             System.out.println("________________________________________________");
-            System.out.println("Введите 0 для выхода");
+            System.out.println("Введите 0 для выхода в главное меню");
 
         }
 
